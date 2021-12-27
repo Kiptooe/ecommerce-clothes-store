@@ -19,21 +19,44 @@ class AdminController extends BaseController
     {
         echo view('user/admin/'.$p);
     }
-    public function createUser(){
+    public function createAccount(){
         // echo 'Good progress';
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $email = $_POST['email'];
-        $pwd = $_POST['pwd'];
-        $gender = $_POST['gender'];
-        $role = $_POST['role'];
 
-        $gri = new RoleModel();
-        $createuser = new UserModel();
+        helper(['form','url']);
 
-        $role_details = $gri->getRoleId($role);
+        $error = $this->validate([
 
-        $createuser->createUser($fname,$lname,$email,$pwd,$role_details['role_id']);        
+            'firstname' => 'required|max_length[30]',
+            'lastname' => 'required|max_length[30]',
+            'password' => 'required|min_length[4]'
+
+        ]);
+
+        if(!$error){
+
+            echo view('user/register',['error' => $this->validator]);
+            
+        }else{
+
+        $user = array(
+
+            'first_name' => $_POST['firstname'],
+            'last_name' => $_POST['lastname'],
+            'gender' => $_POST['gender'],
+            'email' => $_POST['email'],
+            'role' => $_POST['role'],
+            'password' => $_POST['password']
+
+        );    
+
+        $rolemodel = new RoleModel();
+        $role_details = $rolemodel->getRoleId($user['role']);
+        $user['role'] = $role_details['role_id'];
+
+        $usermodel = new UserModel();
+        $usermodel->createAccount($user);
+
+        }
     }
 
     public function createRole(){

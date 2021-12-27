@@ -22,9 +22,22 @@ class User extends BaseController
     }*/
     public function processLogin(){
         
+        helper(['form','url']);
+
+        $error = $this->validate([
+
+            'email' => 'required|valid_email',
+            'password' =>'required|min_length[4]'
+
+        ]);
+        if(!$error){
+            echo view('user/login',['error' => $this->validator]);
+        }else{
+
+    
         $email = $_POST['email'];
-        $pwd = $_POST['pwd'];
-        $user = [];
+        $pwd = $_POST['password'];
+        
        
         $user_model = new UserModel();
         $user_data = $user_model->get_user($email,$pwd);
@@ -42,7 +55,7 @@ class User extends BaseController
        }else if($user_data['role_id']==21){
            echo view('user/api/api_user');
        }
-       
+    }
        /*echo "<pre>";
        print_r($user_role_data);
        
@@ -52,17 +65,44 @@ class User extends BaseController
        //echo $credentials['email'];*/
     }
 
-    public function createUser(){
+    public function processRegistration(){
         
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $email = $_POST['email'];
-        $pwd = $_POST['pwd'];
-        $gender = $_POST['gender'];
-        $role = $_POST['role'];
+        helper(['form','url']);
 
-        echo $fname;
-        exit();
+        $error = $this->validate([
+
+            'firstname' => 'required|max_length[30]',
+            'lastname' => 'required|max_length[30]',
+            'password' => 'required|min_length[4]'
+
+        ]);
+
+        if(!$error){
+
+            echo view('user/register',['error' => $this->validator]);
+            
+        }else{
+
+        $user = array(
+
+            'first_name' => $_POST['firstname'],
+            'last_name' => $_POST['lastname'],
+            'gender' => $_POST['gender'],
+            'email' => $_POST['email'],
+            'role' => $_POST['role'],
+            'password' => $_POST['password']
+
+        );    
+
+        $rolemodel = new RoleModel();
+        $role_details = $rolemodel->getRoleId($user['role']);
+        $user['role'] = $role_details['role_id'];
+
+        $usermodel = new UserModel();
+        $usermodel->createAccount($user);
+
+        }
+        
     }
 
     public function homepage(){
