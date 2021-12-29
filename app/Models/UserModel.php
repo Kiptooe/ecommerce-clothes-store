@@ -14,24 +14,27 @@ class UserModel extends Model{
         
         $user=$this->asArray()
                    ->where('email',$email)
-                   ->where('password',$password)
+                //    ->where('password',$password)
                    ->first();
 
                    //$check_pwd = password_verify( $password,$user['password']);    
                     //add conditinal fr handling wrong email, wrong password
         if(!$user){
-            return 'Wrong credentials!';
+            return 1;
         }
-        else{
+        elseif($password !== $user['password']){
+            return 2;
+        }else{
             return $user;
+        }
 
         }      
-    }
+
     public function createAccount(array $user){
         $this->save($user);
         echo 'Inserted';
     }
-
+}
 
 
     // function createUser($fname,$lname,$email,$pwd,$roleid){
@@ -50,4 +53,3 @@ class UserModel extends Model{
     // }
 
 
-}

@@ -38,11 +38,19 @@ class User extends BaseController
         $email = $_POST['email'];
         $pwd = $_POST['password'];
         
-       
+        $session = session();
+
         $user_model = new UserModel();
         $user_data = $user_model->get_user($email,$pwd);
+
+        if($user_data==1){
+            $session->setFlashData('email_error','Email is not registered');
+            echo view('user/login');
+        }elseif ($user_data==2){
+            $session->setFlashdata('password_error','Password is wrong');
+            echo view('user/login');
+        }
        
-        $session = session();
         $session->set('user_details',$user_data);
 
        /*$role_model = new RoleModel();
@@ -89,20 +97,25 @@ class User extends BaseController
             'last_name' => $_POST['lastname'],
             'gender' => $_POST['gender'],
             'email' => $_POST['email'],
-            'role' => $_POST['role'],
+            'role_id' => $_POST['role'],
             'password' => $_POST['password']
 
         );    
 
         $rolemodel = new RoleModel();
-        $role_details = $rolemodel->getRoleId($user['role']);
-        $user['role'] = $role_details['role_id'];
+        $role_id = $rolemodel->getRoleId($user['role_id']);
+        $user['role_id'] = $role_id;
 
         $usermodel = new UserModel();
         $usermodel->createAccount($user);
 
         }
         
+    }
+    public function logout(){
+        $session = session();
+        $session->destroy('user_details');
+        echo view('user/index');
     }
 
     public function homepage(){

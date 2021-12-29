@@ -44,14 +44,14 @@ class AdminController extends BaseController
             'last_name' => $_POST['lastname'],
             'gender' => $_POST['gender'],
             'email' => $_POST['email'],
-            'role' => $_POST['role'],
+            'role_id' => $_POST['role'],
             'password' => $_POST['password']
 
         );    
 
         $rolemodel = new RoleModel();
-        $role_details = $rolemodel->getRoleId($user['role']);
-        $user['role'] = $role_details['role_id'];
+        $role_id = $rolemodel->getRoleId($user['role_id']);
+        $user['role_id'] = $role_id;
 
         $usermodel = new UserModel();
         $usermodel->createAccount($user);

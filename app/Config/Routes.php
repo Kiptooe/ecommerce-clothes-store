@@ -36,6 +36,7 @@ $routes->setAutoRoute(true);
 $routes->add('/', 'User::index');
 $routes->add('register','User::show/register');
 $routes->add('login','User::show/login');
+$routes->add('logout','User::logout');
 $routes->add('userlogin','User::processLogin');
 $routes->add('user-registration','User::processRegistration');
 $routes->add('createuser','AdminController::show/create_user');

@@ -9,6 +9,7 @@
    <?php include_once('navigation.php');?>
    <?php
    $validation = \Config\Services::validation();
+   $session = session();
    ?>
     <main>
       <form method="POST" action="userlogin" enctype="multipart/form-data"><!--action='Controller/method'-->
@@ -22,6 +23,7 @@
           .$validation->getError('email').
           '</div>';
         }
+        echo '<div>'.$session->getFlashdata('email_error').'</div>';        
         ?>
         
         <input type="password" id="password" name="password" required placeholder="Enter password"><br><br>
@@ -32,6 +34,7 @@
           .$validation->getError('password').
           '</div>';
         }
+        echo '<div>'.$session->getFlashdata('password_error').'</div>';
         ?>
 
         <input type="submit" name="submit" value="Sign In"> <a href="register.php"><p>New here? Click to sign up</p></a>

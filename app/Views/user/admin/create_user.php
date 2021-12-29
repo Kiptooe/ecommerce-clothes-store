@@ -23,7 +23,7 @@
     <input id='gender-male' name="gender" type="radio" value="Male"><br><br>
     <label for="role">Select Role:</label>
     <select name="role" id="role">
-        <option value="Administrator">Administrator</option>
+        <option value="Admin">Administrator</option>
         <option value="Buyer">Buyer</option>
         <option value="ApiUser">Api User</option>
     </select><br><br>

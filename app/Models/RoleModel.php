@@ -13,7 +13,7 @@ class RoleModel extends Model{
                    ->where('role_name',$role)
                    ->first();
 
-        return $user;
+        return $user['role_id'];
     }
 
     
