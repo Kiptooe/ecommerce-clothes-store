@@ -21,8 +21,9 @@ class AdminController extends BaseController
     }
     public function editSingleUser($email){
 
-        echo $email;
-        exit();
+        $usermodel = new UserModel();
+        $user['user_data'] = $usermodel->getSingleUser($email);
+        echo view('edit_user',$user);
 
     }
     public function createAccount(){

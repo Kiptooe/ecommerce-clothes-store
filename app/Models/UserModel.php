@@ -29,6 +29,12 @@ class UserModel extends Model{
         }
 
         }      
+     public function getSingleUser($email){
+         $user = $this->asArray()
+                      ->where('email',$email)
+                      ->first();
+                      return $user;  
+     }   
 
     public function createAccount(array $user){
         $this->save($user);

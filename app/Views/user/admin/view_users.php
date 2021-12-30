@@ -9,22 +9,23 @@
      <tr>
          <th>Firstname</th><th>Lastname</th><th>Email</th><th>Gender</th><th>Role</th><th><th>Edit</th><th>Delete</th>
      </tr>   
-     <tr>
+
      <?php
      $session = session();
      $users = $session->get('users');
      for($index=0;$index!=count($users);$index++){
-     ?>
-    <td><?php echo $users[$index]["first_name"]; ?></td>
-    <td><?php echo $users[$index]["last_name"]; ?></td>
-    <td><?php echo $users[$index]["email"]; ?></td>
-    <td><?php echo $users[$index]["role_id"]; ?></td>
-    <td><?php echo $users[$index]["gender"]; ?></td>
-    <td><a href="AdminController::editSingleUser/$users['email']">Edit</a></td>
-    </tr>
-    <?php
-    echo '<br><br>';
-    }?>
+    echo '
+    <tr>   
+    <td>'.$users[$index]["first_name"].'</td>
+    <td>'.$users[$index]["last_name"].'</td>
+    <td>'.$users[$index]["email"].'</td>
+    <td>'.$users[$index]["role_id"].'</td>
+    <td>'.$users[$index]["gender"].'</td>
+    <td><a href="AdminController/editSingleUser/'.$users[$index]['email'].'">Edit</a></td>
+    </tr>';
+    
+    }
+    ?>
         </table>
     </body>
 </html>
