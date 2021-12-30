@@ -19,6 +19,12 @@ class AdminController extends BaseController
     {
         echo view('user/admin/'.$p);
     }
+    public function editSingleUser($email){
+
+        echo $email;
+        exit();
+
+    }
     public function createAccount(){
         // echo 'Good progress';
 
@@ -110,6 +116,16 @@ class AdminController extends BaseController
         $cp = new ProductModel();
         $cp->createProduct($product);
 
+
+    }
+    public function fetchAllUsers(){
+
+    $usermodel = new UserModel();    
+    $users = $usermodel->findAll();
+    $session = session();
+    $session->set('users',$users);
+    
+    echo view('user/admin/view_users');
 
     }
 
