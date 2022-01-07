@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 use App\Models\RoleModel;
+use App\Models\CategoryModel;
+use App\Models\SubcategoryModel;
+use App\Models\ProductModel;
 
 class User extends BaseController
 {
@@ -50,7 +53,10 @@ class User extends BaseController
             $session->setFlashdata('password_error','Password is wrong');
             echo view('user/login');
         }
-       
+        
+        $ctmodel = new CategoryModel();
+        $categories['categories'] = $ctmodel->asArray()->findAll();
+
         $session->set('user_details',$user_data);
 
        /*$role_model = new RoleModel();
@@ -59,7 +65,8 @@ class User extends BaseController
        if($user_data['role_id']== 20 ){
            echo view('user/admin/admin');
        }else if($user_data['role_id']==22){
-           echo view('user/buyer/buyer');
+           echo view('user/buyer/buyer_navbar');
+           echo view('user/buyer/buyer',$categories);
        }else if($user_data['role_id']==21){
            echo view('user/api/api_user');
        }
@@ -121,4 +128,29 @@ class User extends BaseController
     public function homepage(){
         return view('main/homepage.php');
     }
+
+    // public function displayProducts($categoryid){
+    //     $scmodel = new SubcategoryModel();
+    //     $products['products'] = $scmodel->getProducts($categoryid);
+
+    //     return view('main/homepage.php');
+    // }
+         public function displaySubcategories($categoryid){
+         $scmodel = new SubcategoryModel();
+         $subcategories['subcategories'] = $scmodel->getSubcategories($categoryid);
+
+         echo view('user/buyer/buyer_navbar');
+         echo view('user/buyer/subcategories',$subcategories);
+
+     }
+
+     public function displayProducts($subcategoryid){
+        $pmodel = new ProductModel();
+        $products['products'] = $pmodel->getProducts($subcategoryid);
+
+        echo view('user/buyer/buyer_navbar');
+        echo view('user/buyer/products',$products);
+
+    }
+
 }

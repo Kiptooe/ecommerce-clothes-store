@@ -2,7 +2,6 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
-
 class UserModel extends Model{
 
     protected $table = 'tbl_users';
@@ -29,9 +28,9 @@ class UserModel extends Model{
         }
 
         }      
-     public function getSingleUser($email){
+     public function getSingleUser($userid){
          $user = $this->asArray()
-                      ->where('email',$email)
+                      ->where('user_id',$userid)
                       ->first();
                       return $user;  
      }   

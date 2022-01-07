@@ -7,7 +7,7 @@
     </head>
 <body>
 <?php include('admin_navbar.php')?>
-    <form action="AdminController/createcategory" method="POST" enctype="multipart/form-data">
+    <form action="Admincreatecategory" method="POST" enctype="multipart/form-data">
 <fieldset>
     <legend>Create Product category</legend>
     <label for="category">Enter category name: </label>

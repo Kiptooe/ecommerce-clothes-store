@@ -12,6 +12,9 @@
 
      <?php
      $session = session();
+     $session = \Config\Services::session();
+     $success = $session->getFlashdata('success');
+     echo '<div>'.$success.'</div><br><br>';
      $users = $session->get('users');
      for($index=0;$index!=count($users);$index++){
     echo '
@@ -21,7 +24,8 @@
     <td>'.$users[$index]["email"].'</td>
     <td>'.$users[$index]["role_id"].'</td>
     <td>'.$users[$index]["gender"].'</td>
-    <td><a href="AdminController/editSingleUser/'.$users[$index]['email'].'">Edit</a></td>
+    <td><a href="useredit-'.$users[$index]['user_id'].'">Edit</a></td>
+    <td><a href="userdelete-'.$users[$index]['user_id'].'">Delete</a></td>    
     </tr>';
     
     }

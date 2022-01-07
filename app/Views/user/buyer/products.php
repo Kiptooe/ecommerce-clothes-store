@@ -2,12 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Buyer Page </title>
         <link rel="stylesheet" href="css/style1.css">
     </head>
 <body>
                         <?php 
-                        for($index=0;$index<count($categories);$index++){
+                        for($index=0;$index<count($products);$index++){
                         echo'    
                         <div class="col-sm-6">
                           <div class="card shadow-sm border-success">
@@ -15,9 +14,9 @@
                                 <i class="fas fa-3x fa-drumstick-bite" style="color: #d65f0a;"></i>
                             </div>
                             <div class="card-body text-center">
-                              <h4 class="card-title fw-bold">'.$categories[$index]['category_name'].'</h4>
+                              <h4 class="card-title fw-bold">'.$products[$index]['product_name'].'</h4>
                               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="showcategory-'.$categories[$index]['category_id'].'" class="btn btn-success text-dark">take me there</a>
+                              <a href="showsubcategory-'.$products[$index]['product_id'].'" class="btn btn-success text-dark">Add to cart</a>
                             </div>
                           </div>
                         </div>

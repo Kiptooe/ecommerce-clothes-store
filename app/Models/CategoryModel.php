@@ -5,8 +5,8 @@ use CodeIgniter\Model;
 
 class CategoryModel extends Model{
  
-    // protected $table = 'tbl_categories';
-    // protected $primaryKey = 'category_id';
+     protected $table = 'tbl_categories';
+     protected $primaryKey = 'category_id';
 
     public function createCategory($category){
        

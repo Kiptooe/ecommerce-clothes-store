@@ -17,13 +17,26 @@ class AdminController extends BaseController
     }
     public function show($p)
     {
-        echo view('user/admin/'.$p);
+        $scmodel = new SubcategoryModel();
+        $subcategories['subcategories'] = $scmodel->findAll();
+        echo view('user/admin/'.$p,$subcategories);
     }
-    public function editSingleUser($email){
+    public function editSingleUser($userid){
 
         $usermodel = new UserModel();
-        $user['user_data'] = $usermodel->getSingleUser($email);
-        echo view('edit_user',$user);
+        $user['user_data'] = $usermodel->getSingleUser($userid);
+       
+        echo view('user/admin/admin_navbar');
+        echo view('user/admin/edit_user',$user);
+
+    }
+    public function editSingleSubcategory($subcategoryid){
+
+        $subcategorymd = new SubcategoryModel();
+        $subcategory['subcategory'] = $subcategorymd->asArray()->where('subcategory_id',$subcategoryid)->first();
+     
+        echo view('user/admin/admin_navbar');
+        echo view('user/admin/edit_subcategory',$subcategory);
 
     }
     public function createAccount(){
@@ -81,20 +94,53 @@ class AdminController extends BaseController
     }
 
     public function createSubCategory(){
-        $subcategory = $_POST['subcategory'];
+
+        $subcategorydetails = array( 'subcategory_name' => $_POST['subcategory'],'category_id' => 4);
         $create_subcategory = new SubcategoryModel();
 
-        if(preg_match("/Men/",$subcategory)){
-            $categoryid = 1;
-        }elseif (preg_match("/Women/",$subcategory)){
-            $categoryid = 2;
-        }elseif (preg_match("/Children/",$subcategory)){
-            $categoryid = 3;
+        if(preg_match("/Men/",$subcategorydetails['subcategory_name'])){
+            $category_id = 1;
+        }elseif (preg_match("/Women/",$subcategorydetails['subcategory_name'])){
+            $category_id = 2;
+        }elseif (preg_match("/Children/",$subcategorydetails['subcategory_name'])){
+            $category_id = 3;
         }else {
-            $categoryid = 4;
+            $category_id = 4;
         }
-        //or put conditional in category model, getCategoryId()
-        $create_subcategory->createSubCategory($categoryid,$subcategory);
+        $subcategorydetails['category_id'] = $category_id;
+        //or put conditional in category model, getCateg_oryId()
+        $create_subcategory->save($subcategorydetails);
+
+        $session = \Config\Services::session();
+        $session->setFlashdata('success','Subcategory created successfully');
+
+        echo view('user/admin/create_subcategory');
+
+    }
+    public function editSubCategory(){
+        $subcategory_id = $_POST['subcategory_id'];
+
+        $subcategorydetails = array( 'subcategory_name' => $_POST['subcategory_name'],'category_id' => $_POST['category_id']);
+        $create_subcategory = new SubcategoryModel();
+    
+        $create_subcategory->Update($subcategory_id,$subcategorydetails);
+
+        $session = \Config\Services::session();
+        $session->setFlashdata('editsuccess','Subcategory edited successfully');
+
+        echo view('user/admin/admin');
+
+    }
+    public function deleteSubcategory($subcategory_id){
+        $scmodel = new SubcategoryModel();
+        $status['is_deleted'] = 0;
+        $scmodel->Update($subcategory_id,$status);
+
+        $session = \Config\Services::session();
+        $session->setFlashdata('deletesuccess','Subcategory deleted successfully');
+
+        echo view('user/admin/admin');
+
     }
     public function createProduct(){
         
@@ -126,8 +172,58 @@ class AdminController extends BaseController
     $session = session();
     $session->set('users',$users);
     
+    echo view('user/admin/admin_navbar');
     echo view('user/admin/view_users');
 
+    }
+    public function editUser(){
+    
+        helper(['form','url']);
+
+        $error = $this->validate([
+
+            'firstname' => 'required|max_length[30]',
+            'lastname' => 'required|max_length[30]'
+        ]);
+
+        $user_id = $_POST['user_id'];
+
+        $usermodel = new UserModel();
+
+        
+        if(!$error){
+            $user['user_data'] = $usermodel->where('user_id',$user_id);
+            $user['error'] = $this->validator;
+            echo view('user/admin/edit_user',$user);   
+        }else{
+
+            $user =array(
+               'first_name' => $_POST['firstname'],
+               'last_name' => $_POST['lastname'],
+               'email' => $_POST['email'],
+               'gender' => $_POST['gender'],
+               'role_id' => $_POST['role_id']
+            );
+            $usermodel = new UserModel();
+          
+            $usermodel->update($user_id,$user);
+            
+            $session = \Config\Services::session();
+            
+            $session->setFlashdata('success','User data updated');
+
+            echo view('user/admin/admin_navbar');
+            echo view('user/admin/view_users');
+        }
+
+    }
+
+    public function fetchAllSubcategories(){
+        $subcategory = new SubcategoryModel();
+        $subcategories['subcategories'] = $subcategory->findAll();
+       
+        echo view('user/admin/admin_navbar');
+        echo view('user/admin/view_subcategories',$subcategories);
     }
 
 }

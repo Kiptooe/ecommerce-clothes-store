@@ -7,7 +7,7 @@
     </head>   
 <body>
 <?php include('admin_navbar.php');?>
-    <form action="AdminController/createrole" method='POST' enctype='multipart/form-data'>
+    <form action="Admincreaterole" method='POST' enctype='multipart/form-data'>
 <fieldset>
     <legend>Create Role</legend>
     <label for="role"> Enter role name </label><br><br>

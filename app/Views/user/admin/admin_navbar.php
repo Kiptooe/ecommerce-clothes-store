@@ -6,16 +6,16 @@
         <link href="style.css" rel='stylesheet'>
     </head>
 <body>
-    <?php
+     <?php
      $session = session();
      $user_details = $session->get('user_details');
      $firstname = $user_details['first_name'];
      
-     ?><nav>
+     ?><nav> 
          <ul>
              <li><a href='logout'>Logout</li>
-             <li><a href='profile
-             '><?php echo 'Welcome'. ' '; echo $firstname ?></a></li> 
+             <!-- <li><a href='profile
+             '><?php //echo 'Welcome'. ' '; echo $firstname ?></a></li>  -->
              <li><a href="createrole">Create Role</a></li>
              <li><a href='editrole'>Edit Role</a></li> 
              <li><a href="createuser">Create User</a></li>

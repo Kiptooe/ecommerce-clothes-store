@@ -7,9 +7,9 @@
     </head>
  <body>
 
-     <?php include('admin_navbar.php');?>
+      <?php include('admin_navbar.php');?>
 
-<form action="AdminController/createuser" method="POST" enctype="multipart/form-data">
+<form action="Admincreateuser" method="POST" enctype="multipart/form-data">
 
     <fieldset>
      <legend>Create User</legend>   

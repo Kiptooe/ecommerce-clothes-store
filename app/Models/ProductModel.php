@@ -17,4 +17,8 @@ class ProductModel extends Model{
         echo 'inserted';
     }
 
+    public function getProducts ($sbcategoryid){
+        $products = $this->asArray()->where('subcategory_id',$sbcategoryid)->findAll();
+        return $products;
+    }
 }
