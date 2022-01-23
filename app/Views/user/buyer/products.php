@@ -15,8 +15,8 @@
                             </div>
                             <div class="card-body text-center">
                               <h4 class="card-title fw-bold">'.$products[$index]['product_name'].'</h4>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="showsubcategory-'.$products[$index]['product_id'].'" class="btn btn-success text-dark">Add to cart</a>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> 
+                              <a href="showsingle-'.$products[$index]['product_id'].'" class="btn btn-success text-dark">Add to cart</a>
                             </div>
                           </div>
                         </div>

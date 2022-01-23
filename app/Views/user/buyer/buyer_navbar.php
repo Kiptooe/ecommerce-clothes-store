@@ -15,8 +15,6 @@
              <li><a href='logout'>Logout</li>
               <li>
              <?php echo 'Welcome'. ' '; echo $firstname ?></li> 
-             <!-- <li><a href='createproduct'>Create Product</a></li>
-             <li><a href='editproduct'>Edit Product</a></li> -->
          </ul>
      </nav>   
         

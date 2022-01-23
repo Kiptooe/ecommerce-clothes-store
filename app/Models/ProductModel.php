@@ -21,4 +21,9 @@ class ProductModel extends Model{
         $products = $this->asArray()->where('subcategory_id',$sbcategoryid)->findAll();
         return $products;
     }
+
+    public function getProduct($productid){
+        $product = $this->asArray()->where('product_id',$productid)->first();
+        return $product;
+    }
 }

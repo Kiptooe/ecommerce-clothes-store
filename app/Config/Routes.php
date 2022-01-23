@@ -59,6 +59,8 @@ $routes->add('subcategoryedit-(:num)','AdminController::editSingleSubcategory/$1
 $routes->add('subcategorydelete-(:num)','AdminController::deleteSubcategory/$1');
 $routes->add('showcategory-(:num)','User::displaySubcategories/$1');
 $routes->add('showsubcategory-(:num)','User::displayProducts/$1');
+$routes->add('showsingle-(:num)','User::showProduct/$1');
+$routes->add('createorder','User::createOrder');
 //$routes->get('','User::show/$1');
 //$routes->get('/processLogin','User::processLogin');
 //$routes->get('homepage.php','User/homepage');
