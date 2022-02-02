@@ -22,7 +22,7 @@
         <label for="sub_category">Select Product SubCategory</label>
         <select name="sub_category" id="sub_category">
         <?php 
-        for($index=0;$index!=count($subcategories);$index++){
+        for($index=0;$index<count($subcategories);$index++){
         echo'
         <option value="'.$subcategories[$index]['subcategory_name'].'">'.$subcategories[$index]['subcategory_name'].'</option>
         

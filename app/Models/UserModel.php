@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Models\WalletModel;
 class UserModel extends Model{
 
     protected $table = 'tbl_users';
@@ -37,7 +38,11 @@ class UserModel extends Model{
 
     public function createAccount(array $user){
         $this->save($user);
-        echo 'Inserted';
+
+        $session = session();
+        $session->setFlashdata('success','Account created');
+        echo view('user/register');
+
     }
 }
 

@@ -104,7 +104,10 @@ class AdminController extends BaseController
             $category_id = 2;
         }elseif (preg_match("/Children/",$subcategorydetails['subcategory_name'])){
             $category_id = 3;
-        }else {
+        }elseif (preg_match("/Universal/",$subcategorydetails['subcategory_name'])){
+            $category_id = 12;
+        }
+        else {
             $category_id = 4;
         }
         $subcategorydetails['category_id'] = $category_id;

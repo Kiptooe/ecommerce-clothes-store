@@ -6,9 +6,9 @@
     </head>
     <body>
 
-        <table>
+        <table class="table table-bordered table-striped table-responsive" >
      <tr>
-         <th>Subcategory Name</th><th>Category Id</th><th>Updated at</th><th>Edit</th><th>Delete</th>
+         <th>Subcategory Name</th><th>Category Id</th><th>Edit</th><th>Delete</th>
      </tr>   
 
      <?php

@@ -3,12 +3,20 @@
 <head>
     <meta lang="en">    
     <title>Registration Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet" >    
 </head>
 <body>
   <?php include_once('navigation.php');?>
   <?php
   $validation = \Config\Services::validation();
+
+  $session = session();
+  $confirmation = $session->getFlashdata('success');
+  
+if($confirmation){
+  echo '<p>'.$confirmation.'</p>' ;
+}
   ?>
     <main>
       <form action="user-registration" method="post" enctype="multipart/form-data">

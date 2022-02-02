@@ -16,6 +16,7 @@ class CategoryModel extends Model{
         $builder->set('category_name',$category);
         $builder->insert();
 
+        echo view('user/admin/create_category');
     }
 
 }    

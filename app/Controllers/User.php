@@ -21,9 +21,14 @@ class User extends BaseController
         echo view('user/index.php');
     }
     public function show($page){
-
-        // echo $page;exit();
         echo view('user/'.$page);
+    }
+    public function display($page,$page2){
+        $ctgry = new CategoryModel();
+        $categories['categories'] = $ctgry->findAll();
+        // echo $page;exit();
+        echo view('user/buyer/'.$page);
+        echo view('user/buyer/'.$page2,$categories);
     }
    /* public function register($page){
         echo view('user/'.$page);
@@ -63,6 +68,15 @@ class User extends BaseController
         $categories['categories'] = $ctmodel->asArray()->findAll();
 
         $session->set('user_details',$user_data);
+
+        $session = session();
+        $user = $session->get('user_details');
+        
+        $account['user_id'] = $user['user_id'];
+        $account['amount_available'] = 10000;
+
+        $wallet = new WalletModel();
+        $wallet->save($account);
 
        /*$role_model = new RoleModel();
        $user_role_data = $role_model->getRole($user_data);*/
@@ -120,7 +134,7 @@ class User extends BaseController
 
         $usermodel = new UserModel();
         $usermodel->createAccount($user);
-
+        
         }
         
     }
@@ -207,9 +221,11 @@ class User extends BaseController
         $wallet_id = $wallet['wallet_id'];
         //modify date
     
-        if($wallet['amount_available']<=0){
-            echo'<script> alert(Wallet balance is 0)</script>';
+        if($wallet['amount_available']==0){
+            echo'<script> alert("Wallet balance is 0");</script>';
           
+        }else if($order['order_amount']>$wallet['amount_available']){
+            echo'<script> alert("Insufficient amount available to complete purchase,kindly update wallet");</script>';
         }else{
             $wallet['amount_available'] = $wallet['amount_available'] - $order['order_amount'];
 
@@ -240,6 +256,52 @@ class User extends BaseController
         }
         
 
+    }
+
+    public function showPurchases(){
+        $order=new OrderModel();
+        $order_details=new OrderdetailsModel();
+        $product=new ProductModel();
+
+        // session_destroy();
+        
+        $session = session();
+        $user = $session->get('user_details');
+
+        $Order=$order->where('customer_id',$user['user_id'])->first();
+
+        $all['OrderDetails']=$order_details->where('order_id',$Order['order_id'])->findAll();
+
+        for ($i=0; $i <count($all['OrderDetails']) ; $i++) { 
+            // code...
+            $all['product_data'][$i]=$product->where('product_id',$all['OrderDetails'][$i]['product_id'])->first();
+
+
+        }
+        $all['product_name']= array();
+        for ($j=0; $j < count($all['product_data']) ; $j++) { 
+            // code...
+            if (!in_array($all['product_data'][$j],$all['product_name'] )) {
+                // code...
+                $all['product_name'][$j]= $all['product_data'][$j];
+            }
+
+
+        }
+        //for ($k=0; $k <count($all['product_name']) ; $k++) { 
+            // code...
+            //$array=
+       // }
+
+      //echo "<pre>";
+       //print_r($all);exit();
+       // echo "</pre>";
+
+
+            echo view('user/buyer/buyer_navbar');
+            echo view('user/buyer/order_details',$all);
+            // echo view('templete/footer');
+    
     }
 
 }

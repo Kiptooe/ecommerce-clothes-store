@@ -5,9 +5,9 @@
         <title>Table  of all users</title>
     </head>
     <body>
-        <table>
+        <table class="table table-bordered table-striped table-responsive">
      <tr>
-         <th>Firstname</th><th>Lastname</th><th>Email</th><th>Gender</th><th>Role</th><th><th>Edit</th><th>Delete</th>
+         <th>Firstname</th><th>Lastname</th><th>Email</th><th>Gender</th><th>Role</th><th>Edit</th><th>Delete</th>
      </tr>   
 
      <?php

@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Models\SubcategoryModel;
 
 class ProductModel extends Model{
     
@@ -14,7 +15,12 @@ class ProductModel extends Model{
 
     public function createProduct(array $product){
         $this->save($product);
-        echo 'inserted';
+
+        $sbctgry = new SubcategoryModel;
+        $subcategories['subcategories'] = $sbctgry->findAll();
+        
+        echo view('user/admin/create_product',$subcategories);
+
     }
 
     public function getProducts ($sbcategoryid){

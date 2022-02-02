@@ -61,6 +61,8 @@ $routes->add('showcategory-(:num)','User::displaySubcategories/$1');
 $routes->add('showsubcategory-(:num)','User::displayProducts/$1');
 $routes->add('showsingle-(:num)','User::showProduct/$1');
 $routes->add('createorder','User::createOrder');
+$routes->add('purchases','User::showPurchases');
+$routes->add('buyer','User::display/buyer_navbar/buyer');
 //$routes->get('','User::show/$1');
 //$routes->get('/processLogin','User::processLogin');
 //$routes->get('homepage.php','User/homepage');
