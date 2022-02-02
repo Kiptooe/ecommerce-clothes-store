@@ -73,7 +73,7 @@ class User extends BaseController
         $user = $session->get('user_details');
         
         $account['user_id'] = $user['user_id'];
-        $account['amount_available'] = 10000;
+        $account['amount_available'] = 20000;
 
         $wallet = new WalletModel();
         $wallet->save($account);
