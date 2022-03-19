@@ -1,63 +1,45 @@
-# CodeIgniter 4 Application Starter
+## This is an ecommerce store for selling clothes built using codeIgniter4.The clothes can belong to either Men,Women,Kids or Pets category. This project was done in my second year of university.
 
-## What is CodeIgniter?
+# System Functionality
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+**1.Administrator**
+# Roles
+1. The administrator should be able to add/edit a new category
+2. The administrator should be able to add/edit a new subcategory
+3. The administrator should be able to add/edit a new item (clothing) and assign 
+categories
+4. The administrator should be able to add/edit a new user
+5. The administrator should be able to generate tokens/ user access keys for API access(**Yet to be done**)
+6. The administrator should be able to generate tokens for specific API products(**Yet to be done**)
+7. The administrator should view analytics on(**Yet to be done**):
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+- All purchases per category, subcategory, product, user, gender. This can be 
+represented as a table and/ or graph
+- Highest/ Lowest purchases done per user, category, subcategory, product.
+- *Stock out alerts (forecasting for maybe 3 months based on monthly-moving 
+average product sales)
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+**2.Buyer**
+# Roles
+1. The user should be able to register for an account and login into their account
+2. The user should be able to view all items filtered by different categories/ 
+subcategories, date added, price (lowest to highest/ highest to lowest)
+3. The user should be able to purchase an item/ items
+4. The user should be able to add money to their wallet (simulated)
+5. The user should be able to pay for the items from their wallet (within the system), or 
+via a payment processing system
+6. The user should be able to view their purchase history as a summary and granulated 
+(by category, by date, by price)
+7. The user should receive a receipt for their purchases(**Yet to be done**)
+8. User should be able to print the receipts as PDF (**Yet to be done**)
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
-
-## Installation & updates
-
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
-
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
-
-## Setup
-
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
-
-## Important Change with index.php
-
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
-
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
-
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+**3.API User** (**Yet to be done**)
+# Roles
+1. The system should allow the API user to register 
+2. The system should be able to give an API user a general API access token (that has an 
+expiry date) or an API key
+3. The system should allow the API user to register for/ subscribe to specific API 
+products
+4. The system should log any API access (IP address of request) for analytics purposes
+5. The system should be able to provide access to data for an authenticated API users 
+accessing approved API paths
