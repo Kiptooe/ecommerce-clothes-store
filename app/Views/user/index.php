@@ -27,7 +27,8 @@
         <ol>
          <li><a href="#women">Women</a></li>
          <li><a href="#men">Men</a></li>
-         <li><a href="#kids">Kids</a></li>   
+         <li><a href="#kids">Kids</a></li>
+         <li><a href="#Pets">Pets</a></li>      
         </ol>  
        <?php include_once('footer.php'); ?>
        
