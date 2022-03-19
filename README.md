@@ -1,5 +1,9 @@
 ## This is an ecommerce store for selling clothes built using codeIgniter4.The clothes can belong to either Men,Women,Kids or Pets category. This project was done in my second year of university.
 
+# Important
+1. To obtain the database check the file named `manustore.sql`
+2. To obtain the user credentials(for logging in) check the file named `UserCredentials.txt`
+
 # System Functionality
 
 **1.Administrator**
