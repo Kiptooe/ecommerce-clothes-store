@@ -27,6 +27,17 @@
              <li><a href='editsubcategory'>Edit Sub-category</a></li>
              <li><a href='createproduct'>Create Product</a></li>
              <li><a href='editproduct'>Edit Product</a></li>
+             <li>
+            <form action='/purchases'>
+             <select name="purchases" id="purchases">
+                <option value="0">Select purchases per:</option>
+                <option value="customers">Customers</option>
+                <option value="gender">Gender</option>
+                <option value="category">Category</option>
+                <option value="subcategory">Subcategory</option>
+                <option value="product">Product</option>
+             </select></li>
+            </form>
          </ul>
      </nav>   
 </body>
