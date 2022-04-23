@@ -15,7 +15,7 @@ categories
 4. The administrator should be able to add/edit a new user
 5. The administrator should be able to generate tokens/ user access keys for API access(**Yet to be done**)
 6. The administrator should be able to generate tokens for specific API products(**Yet to be done**)
-7. The administrator should view analytics on(**Yet to be done**):
+7. The administrator should view analytics on(**Doing**):
 
 - All purchases per category, subcategory, product, user, gender. This can be 
 represented as a table and/ or graph
